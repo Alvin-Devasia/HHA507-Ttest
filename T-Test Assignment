@@ -1,0 +1,42 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Nov  1 23:37:14 2021
+
+@author: AlvinDevasia
+"""
+
+import pandas as pd
+from scipy.stats import ttest_ind
+from numpy.random import seed
+from numpy.random import randn
+import scipy.stats as stats
+from scipy.stats import shapiro
+from matplotlib import pyplot
+
+diabetes = pd.read_csv('https://raw.githubusercontent.com/hantswilliams/AHI_DataSci_507/main/Datasets/Diabetes/DB1_Diabetes/diabetic_data.csv')
+
+list(diabetes)
+
+#Question 1
+Female = diabetes[diabetes['gender'] == 'Female']
+Male = diabetes[diabetes['gender'] == 'Male']
+
+ttest_ind(Female['time_in_hospital'], Male['time_in_hospital'])
+##the p value is <.05 this indicates there is a significant difference between the two groups, between females and males and number of days each gender spent in hospital
+
+#Question 1
+Caucasian = diabetes[diabetes['race'] == 'Caucasian'] 
+African_American = diabetes[diabetes['race'] == 'AfricanAmerican']
+
+ttest_ind(Caucasian['time_in_hospital'], African_American ['time_in_hospital'])
+
+##the p value is <.05 which indicates there is a significant difference between the two groups, race ( caucasian and african american) and the number of days in the hospital
+
+#Question 3
+Asian = diabetes[diabetes['race'] == 'Asian']
+African_American = diabetes[diabetes['race'] == 'AfricanAmerican']
+
+ttest_ind(Asian['num_lab_procedures'], African_American['num_lab_procedures'])
+
+##the p value is <.05 which indicates there is a significant difference between the two groups, race ( asian and african american) and number of days spent in the hospital¶
